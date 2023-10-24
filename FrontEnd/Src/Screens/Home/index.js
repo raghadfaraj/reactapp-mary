@@ -20,7 +20,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = Platform.OS == "android" ? "http://192.168.100.12:8080" : "http://localhost:8080"
+const BASE_URL = Platform.OS == "android" ? "http://10.0.0.45:8080" : "http://localhost:8080"
 
 export default function HomePage(props) {
 
@@ -75,7 +75,7 @@ export default function HomePage(props) {
   }
 
   const searchData = () => {
-    
+
   }
 
   return (

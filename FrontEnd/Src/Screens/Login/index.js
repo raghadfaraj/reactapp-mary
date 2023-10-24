@@ -24,7 +24,7 @@ import { useToast } from "react-native-toast-notifications";
 const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const regPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
-const BASE_URL = Platform.OS == "android" ? "http://192.168.100.12:8080" : "http://localhost:8080"
+const BASE_URL = Platform.OS == "android" ? "http://10.0.0.45:8080" : "http://localhost:8080"
 
 export default function Login(props) {
   const toast = useToast();
