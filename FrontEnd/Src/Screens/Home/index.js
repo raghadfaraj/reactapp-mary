@@ -20,13 +20,14 @@ import { useFocusEffect } from "@react-navigation/native";
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = Platform.OS == "android" ? "http://192.168.100.8:8080" : "http://localhost:8080"
+const BASE_URL = Platform.OS == "android" ? "http://192.168.100.12:8080" : "http://localhost:8080"
 
 export default function HomePage(props) {
 
   const [search, setSearch] = useState("")
   const [tab, setTab] = useState(1)
   const [dataList, setDisplay] = useState([])
+  const [fullData, setAllData] = useState([])
 
   useFocusEffect(
     React.useCallback(() => {
@@ -45,13 +46,26 @@ export default function HomePage(props) {
         },
       })
       setDisplay(fetchData?.data ? fetchData.data : [])
+      setAllData(fetchData?.data ? fetchData.data : [])
       // console.log("getUserAlbums------", fetchData.data)
     } catch (error) {
       console.log(error)
     }
   }
   const selectTab = (num) => {
+    // let result = { ...fullData }
     setTab(num)
+    if (num == 1) {
+      setDisplay(fullData)
+    }
+    else if (num == 2) {
+      let result = fullData?.filter(o1 => o1?.category === "Running")
+      setDisplay(result)
+    }
+    else if (num == 3) {
+      let result = fullData?.filter(o1 => o1?.category === "Walking")
+      setDisplay(result)
+    }
   }
 
   const itemCompact = (item, keyID) => {
@@ -60,6 +74,9 @@ export default function HomePage(props) {
     );
   }
 
+  const searchData = () => {
+    
+  }
 
   return (
     <SafeAreaView style={Styles.backgroundContainer}>
