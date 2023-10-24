@@ -74,8 +74,19 @@ export default function HomePage(props) {
     );
   }
 
-  const searchData = () => {
-
+  const searchData = (val) => {
+    const newData = fullData?.filter(
+      function (item) {
+        // Applying filter for the inserted text in search bar
+        const itemData = item.text
+          ? item.text.toUpperCase()
+          : ''.toUpperCase();
+        const textData = val.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      }
+    );
+    setSearch(val)
+    setDisplay(newData)
   }
 
   return (
@@ -119,7 +130,7 @@ export default function HomePage(props) {
                 placeholderTextColor={Colors.textBlack}
                 autoCapitalize='none'
                 onChangeText={(value) => {
-                  setSearch(value)
+                  searchData(value)
                 }}
               />
             </View>
